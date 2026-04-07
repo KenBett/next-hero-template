@@ -1,9 +1,41 @@
+/* app/globals.css */
 @import "tailwindcss";
 @import "@heroui/styles";
 
-@custom-variant dark (&:is(.dark *));
+/* Define in both light and dark themes */
+:root, [data-theme="light"] {
+	/* Set the primary (accent) color to black in light mode */
+	--accent: oklch(0% 0 0); 
+	--accent-foreground: oklch(100% 0 0); /* White foreground for contrast on black */
+	  /* Border Radius */
+  --radius: 0.25rem;
+  --field-radius: 0.25rem;
+}
 
-@theme {
-	--font-sans: "font", sans-serif;
-	--font-mono: "monospace", monospace;
+.dark, [data-theme="dark"] {
+	/* Set the primary (accent) color to black in dark mode */
+	--accent: oklch(100% 0 0);
+	--accent-foreground: oklch(0% 0 0); /* White foreground for contrast on black */
+}
+
+/* Optional: If using the older 'primary' naming convention from v2, add these as well */
+:root, [data-theme="light"] {
+	--color-primary: oklch(0% 0 0);
+	--color-primary-foreground: oklch(100% 0 0);
+	  /* Border Radius */
+  --radius: 0.25rem;
+  --field-radius: 0.25rem;
+}
+
+.dark, [data-theme="dark"] {
+	--color-primary: oklch(0% 0 0);
+	--color-primary-foreground: oklch(100% 0 0);
+}
+
+/* Make the colors available to Tailwind if not done automatically by the HeroUI plugin */
+@theme inline {
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-primary: var(--color-primary);
+	--color-primary-foreground: var(--color-primary-foreground);
 }

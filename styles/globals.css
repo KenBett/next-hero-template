@@ -14,11 +14,11 @@
 	--color-primary: oklch(0% 0 0);
 	--color-primary-foreground: oklch(100% 0 0);
 
-	/* Main text (neutral-700 feel) */
-	--foreground: oklch(35% 0.01 260);
+	/* Main text - pure black */
+	--foreground: oklch(0% 0 0);
 
-	/* Secondary text (muted) */
-	--muted-foreground: oklch(55% 0.01 260);
+	/* Secondary text (muted) - dark gray for readability in light mode */
+	--muted-foreground: oklch(45% 0 0);
 
 	/* Radius */
 	--radius: 0.25rem;
@@ -37,11 +37,11 @@
 	--color-primary: oklch(0% 0 0);
 	--color-primary-foreground: oklch(100% 0 0);
 
-	/* Main text */
-	--foreground: oklch(92% 0 0);
+	/* Main text - pure white */
+	--foreground: oklch(100% 0 0);
 
-	/* Muted text */
-	--muted-foreground: oklch(70% 0 0);
+	/* Muted text - light gray for readability in dark mode */
+	--muted-foreground: oklch(75% 0 0);
 }
 
 /* =========================

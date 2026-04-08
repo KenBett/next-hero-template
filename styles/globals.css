@@ -2,40 +2,65 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
-/* Define in both light and dark themes */
+/* =========================
+   LIGHT MODE
+========================= */
 :root, [data-theme="light"] {
-	/* Set the primary (accent) color to black in light mode */
+	/* Accent */
 	--accent: oklch(0% 0 0); 
-	--accent-foreground: oklch(100% 0 0); /* White foreground for contrast on black */
-	  /* Border Radius */
-  --radius: 0.25rem;
-  --field-radius: 0.25rem;
+	--accent-foreground: oklch(100% 0 0);
+
+	/* Primary (optional / legacy) */
+	--color-primary: oklch(0% 0 0);
+	--color-primary-foreground: oklch(100% 0 0);
+
+	/* Main text (neutral-700 feel) */
+	--foreground: oklch(35% 0.01 260);
+
+	/* Secondary text (muted) */
+	--muted-foreground: oklch(55% 0.01 260);
+
+	/* Radius */
+	--radius: 0.25rem;
+	--field-radius: 0.25rem;
 }
 
+/* =========================
+   DARK MODE
+========================= */
 .dark, [data-theme="dark"] {
-	/* Set the primary (accent) color to black in dark mode */
+	/* Accent */
 	--accent: oklch(100% 0 0);
-	--accent-foreground: oklch(0% 0 0); /* White foreground for contrast on black */
-}
+	--accent-foreground: oklch(0% 0 0);
 
-/* Optional: If using the older 'primary' naming convention from v2, add these as well */
-:root, [data-theme="light"] {
+	/* Primary */
 	--color-primary: oklch(0% 0 0);
 	--color-primary-foreground: oklch(100% 0 0);
-	  /* Border Radius */
-  --radius: 0.25rem;
-  --field-radius: 0.25rem;
+
+	/* Main text */
+	--foreground: oklch(92% 0 0);
+
+	/* Muted text */
+	--muted-foreground: oklch(70% 0 0);
 }
 
-.dark, [data-theme="dark"] {
-	--color-primary: oklch(0% 0 0);
-	--color-primary-foreground: oklch(100% 0 0);
-}
-
-/* Make the colors available to Tailwind if not done automatically by the HeroUI plugin */
+/* =========================
+   THEME MAPPING (Tailwind)
+========================= */
 @theme inline {
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
+
 	--color-primary: var(--color-primary);
 	--color-primary-foreground: var(--color-primary-foreground);
+
+	--color-foreground: var(--foreground);
+	--color-muted-foreground: var(--muted-foreground);
+}
+
+/* =========================
+   GLOBAL BASE STYLES
+========================= */
+body {
+	color: var(--foreground);
 }

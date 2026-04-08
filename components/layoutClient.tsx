@@ -7,7 +7,6 @@ import clsx from "clsx";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { IconSvgProps } from "@/types";
 import { Home, BarChart3, Folder, Settings, ChevronLeft } from "lucide-react";
-import { TabsCustomStyles } from "./hero";
 
 // Logo component (unchanged)
 export const Logo: React.FC<IconSvgProps> = ({
@@ -44,7 +43,6 @@ const Navbar = () => (
         <Logo />
         <p className="font-bold text-inherit">B3TT</p>
       </NextLink>
-      <TabsCustomStyles />
       <ThemeSwitch />
     </header>
   </nav>
@@ -101,7 +99,7 @@ const Sidebar = ({
               className={clsx(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-xs font-semibold transition-colors",
                 isActive
-                  ? "bg-accent/10 dark:bg-neutral-800 text-inherit"
+                  ? "bg-white shadow-sm dark:bg-neutral-800 text-inherit"
                   : "hover:bg-default/40 hover:text-foreground",
                 isCollapsed && "justify-center px-2",
               )}

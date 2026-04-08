@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { IconSvgProps } from "@/types";
-import { Home, BarChart3, Folder, Settings, ChevronLeft } from "lucide-react";
+import { Home, BarChart3, Folder, Settings, ChevronLeft} from "lucide-react";
 
 // Logo component (unchanged)
 export const Logo: React.FC<IconSvgProps> = ({
@@ -34,7 +34,7 @@ export const Logo: React.FC<IconSvgProps> = ({
 // Navbar (unchanged)
 const Navbar = () => (
   <nav
-    className="fixed top-0 left-0 right-0 z-40 h-12 border-b border-separator bg-background/70 backdrop-blur-lg"
+    className="fixed top-0 left-0 right-0 z-40 h-9 border-b border-separator bg-background/70 backdrop-blur-lg"
     suppressHydrationWarning
     
   >
@@ -86,7 +86,7 @@ const Sidebar = ({
           )}
         />
       </button>
-      <nav className="flex flex-col gap-1 p-3 pt-4">
+      <nav className="flex flex-col  gap-2 p-3 pt-4">
         {items.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -106,7 +106,7 @@ const Sidebar = ({
             >
               <Icon
                 className={clsx(
-                  "h-4 w-4 shrink-0 transition-all",
+                  "h-5 w-5 shrink-0 transition-all",
                   isActive && "fill-current stroke-current",
                 )}
               />

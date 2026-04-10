@@ -5,62 +5,76 @@
 /* =========================
    LIGHT MODE
 ========================= */
-:root, [data-theme="light"] {
-	/* Accent */
-	--accent: oklch(0% 0 0); 
-	--accent-foreground: oklch(100% 0 0);
+:root,
+[data-theme="light"] {
+  /* Background (NEW) */
+  --background: oklch(100% 0 0); /* pure white */
 
-	/* Primary (optional / legacy) */
-	--color-primary: oklch(0% 0 0);
-	--color-primary-foreground: oklch(100% 0 0);
+  /* Accent */
+  --accent: oklch(0% 0 0);
+  --accent-foreground: oklch(100% 0 0);
 
-	/* Main text - pure black */
-	--foreground: oklch(0% 0 0);
+  /* Primary (optional / legacy) */
+  --color-primary: oklch(0% 0 0);
+  --color-primary-foreground: oklch(100% 0 0);
 
-	/* Secondary text (muted) - dark gray for readability in light mode */
-	--muted-foreground: oklch(45% 0 0);
+  /* Main text */
+  --foreground: oklch(0% 0 0);
 
-	/* Radius */
-	--radius: 0.25rem;
-	--field-radius: 0.25rem;
+  /* Secondary text */
+  --muted-foreground: oklch(45% 0 0);
+
+  /* Radius */
+  --radius: 0.25rem;
+  --field-radius: 0.25rem;
+
+  --secondary: oklch(95% 0 0); /* light gray background */
+  --secondary-foreground: oklch(0% 0 0); /* black text */
 }
 
 /* =========================
    DARK MODE
 ========================= */
-.dark, [data-theme="dark"] {
-	/* Accent */
-	--accent: oklch(100% 0 0);
-	--accent-foreground: oklch(0% 0 0);
+.dark,
+[data-theme="dark"] {
+  /* Background (NEW) */
+  --background: oklch(0% 0 0); /* pure black */
 
-	/* Primary */
-	--color-primary: oklch(0% 0 0);
-	--color-primary-foreground: oklch(100% 0 0);
+  /* Accent */
+  --accent: oklch(100% 0 0);
+  --accent-foreground: oklch(0% 0 0);
 
-	/* Main text - pure white */
-	--foreground: oklch(100% 0 0);
+  /* Primary */
+  --color-primary: oklch(0% 0 0);
+  --color-primary-foreground: oklch(100% 0 0);
 
-	/* Muted text - light gray for readability in dark mode */
-	--muted-foreground: oklch(75% 0 0);
+  /* Main text */
+  --foreground: oklch(100% 0 0);
+
+  /* Muted text */
+  --muted-foreground: oklch(75% 0 0);
 }
 
 /* =========================
    THEME MAPPING (Tailwind)
 ========================= */
 @theme inline {
-	--color-accent: var(--accent);
-	--color-accent-foreground: var(--accent-foreground);
+  --color-background: var(--background);
 
-	--color-primary: var(--color-primary);
-	--color-primary-foreground: var(--color-primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 
-	--color-foreground: var(--foreground);
-	--color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
 }
 
 /* =========================
    GLOBAL BASE STYLES
 ========================= */
 body {
-	color: var(--foreground);
+  color: var(--foreground);
+  background-color: var(--background);
 }

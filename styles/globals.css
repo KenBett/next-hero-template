@@ -49,8 +49,8 @@
   --secondary-foreground: oklch(0% 0 0);
 
   /* Border Radius */
-  --radius: 0.9rem;
-  --field-radius: 0.75rem;
+  --radius: 0.3rem;
+  --field-radius: 0.25rem;
 
   /* Font Family */
   --font-sans: var(--font-inter);
@@ -150,6 +150,18 @@ body {
     @apply bg-field text-field-foreground shadow-field rounded-field inline-flex h-9 items-center overflow-hidden ring-0 ring-offset-0 focus-within:ring-0 focus-within:border-none;
   }
 
+  .input-group__input {
+      @apply flex-1 rounded-none border-0 bg-transparent px-3 py-2 shadow-none outline-none ring-0 ring-offset-0 focus-within:ring-0;
+  }
+
+  .input-group {
+    @apply bg-field text-field-foreground shadow-field rounded-field inline-flex h-9 items-center overflow-hidden ring-0 ring-offset-0 focus-within:ring-0 focus-within:border-none;
+  }
+
+  .text-field {
+    @apply bg-field text-field-foreground shadow-field rounded-field inline-flex h-9 items-center overflow-hidden ring-0 ring-offset-0 focus-within:ring-0 focus-within:border-none;
+  }
+
   .search-field__input {
     @apply flex-1 rounded-none border-0 bg-transparent px-3 py-2 shadow-none outline-none;
   }
@@ -167,6 +179,18 @@ body {
   }
 
   .button--ghost {
-    @apply shadow-sm
+    @apply shadow-sm dark:border dark:border-separator;
+  }
+
+  .surface {
+    @apply shadow-sm;
+  }
+
+  .accordion {
+    @apply shadow-sm;
+  }
+
+  .calendar {
+    @apply bg-surface shadow-sm rounded-3xl p-4;
   }
 }

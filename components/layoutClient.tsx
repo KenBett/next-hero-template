@@ -31,24 +31,23 @@ export const Logo: React.FC<IconSvgProps> = ({
   </svg>
 );
 
-// Navbar (unchanged)
-const Navbar = () => (
+// Navbar (simplified - no logo)
+const Navbar = ({
+  isCollapsed,
+}: {
+  isCollapsed: boolean;
+}) => (
   <nav
-    className="fixed top-0 left-0 right-0 z-40 h-9 border-b border-separator bg-background/70 backdrop-blur-lg"
+    className={clsx("fixed top-0 right-0 z-30 h-14 bg-background transition-[left] ease-in-out duration-300", isCollapsed ? "left-14" : "left-48")}
     suppressHydrationWarning
-    
   >
-    <header className="flex h-full items-center justify-between px-4 sm:px-6 lg:px-8">
-      <NextLink className="flex items-center gap-2" href="/">
-        <Logo />
-        <p className="font-bold text-inherit">B3TT</p>
-      </NextLink>
+    <header className="flex h-full items-center justify-between px-4 sm:px-6 lg:px-8 gap-4">
       <ThemeSwitch />
     </header>
   </nav>
 );
 
-// Sidebar (using Lucide icons with dynamic fill/stroke)
+// Sidebar with logo at the top
 const Sidebar = ({
   isCollapsed,
   onToggle,
@@ -67,16 +66,27 @@ const Sidebar = ({
   return (
     <aside
       className={clsx(
-        "pt-6 fixed left-0 z-30 h-[calc(100vh-2rem)] border-r bg-background",
+        "fixed left-0 top-0 z-40 h-screen shadow-sm dark:shadow-2xl bg-background",
         "transition-[width] duration-300 ease-in-out",
         isCollapsed ? "w-14" : "w-48",
       )}
-      style={{ top: "2rem" }}
       suppressHydrationWarning
     >
+      {/* Logo section */}
+      <div className={clsx(
+        "flex items-center h-14",
+        isCollapsed ? "justify-center px-2" : "px-4"
+      )}>
+        <NextLink className="flex items-center gap-2" href="/">
+          <Logo size={28} />
+          {!isCollapsed && <p className="font-bold text-inherit">B3TT</p>}
+        </NextLink>
+      </div>
+
+      {/* Toggle button */}
       <button
         aria-label={isCollapsed ? "Expand" : "Collapse"}
-        className="mt-10 absolute -right-3 top-6 flex h-6 w-6 items-center justify-center rounded-full border border-separator bg-background shadow-sm hover:bg-default/10 transition-colors"
+        className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full bg-background  hover:bg-default/10 transition-colors"
         onClick={onToggle}
       >
         <ChevronLeft
@@ -86,7 +96,9 @@ const Sidebar = ({
           )}
         />
       </button>
-      <nav className="flex flex-col  gap-2 p-3 pt-4">
+
+      {/* Navigation */}
+      <nav className="flex flex-col gap-2 p-3 pt-4">
         {items.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -97,9 +109,9 @@ const Sidebar = ({
               href={item.href}
               title={isCollapsed ? item.label : undefined}
               className={clsx(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-xs font-semibold transition-colors",
+                "flex items-center gap-3 px-3 py-2 text-xs font-semibold transition-colors rounded-lg",
                 isActive
-                  ? "bg-white shadow-sm dark:bg-neutral-800 text-inherit"
+                  ? "bg-background text-inherit"
                   : "hover:bg-default/40 hover:text-foreground",
                 isCollapsed && "justify-center px-2",
               )}
@@ -119,7 +131,7 @@ const Sidebar = ({
   );
 };
 
-// --- MAIN LAYOUT: simplified for easy centering ---
+// --- MAIN LAYOUT ---
 export const LayoutClient = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -138,17 +150,15 @@ export const LayoutClient = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  // Skeleton while mounting (mirrors final structure)
+  // Skeleton while mounting
   if (!mounted) {
     return (
       <>
-        <Navbar />
-        <div className="flex h-[calc(100vh-2rem)] mt-8">
-          <div className="fixed left-0 top-8 z-30 w-48 h-[calc(100vh-2rem)] border-r border-separator bg-background" />
-          <div className="flex-1 ml-48">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
-              <div className="animate-pulse bg-default/20 rounded-lg h-96" />
-            </div>
+        <div className="fixed left-0 top-0 z-30 w-48 h-screen border-r border-separator bg-background" />
+        <div className="fixed top-0 right-0 z-40 h-14 left-48 bg-background/70" />
+        <div className="ml-48">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 mt-14">
+            <div className="animate-pulse bg-default/20 rounded-lg h-96" />
           </div>
         </div>
       </>
@@ -159,20 +169,18 @@ export const LayoutClient = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Navbar />
-      <div className="flex h-[calc(100vh-2rem)] mt-8">
-        <Sidebar isCollapsed={isCollapsed} onToggle={toggle} />
-        {/* Main content area – simplified: flex column + full height */}
-        <div
-          className={clsx(
-            "flex-1 overflow-y-auto flex flex-col transition-[margin] duration-300 ease-in-out",
-            marginLeft,
-          )}
-        >
-          <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
-            {children}
-          </main>
-        </div>
+      <Sidebar isCollapsed={isCollapsed} onToggle={toggle} />
+      <Navbar isCollapsed={isCollapsed} />
+      {/* Main content area */}
+      <div
+        className={clsx(
+          "transition-[margin] duration-300 ease-in-out",
+          marginLeft,
+        )}
+      >
+        <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 mt-14">
+          {children}
+        </main>
       </div>
     </>
   );

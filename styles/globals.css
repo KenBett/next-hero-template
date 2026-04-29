@@ -86,11 +86,11 @@
   --separator: oklch(25% 0.0015 253.83);
   --success: oklch(73.29% 0.1941 150.81);
   --success-foreground: oklch(21.03% 0.0059 150.81);
-  --surface: oklch(0.26 0 0);
+  --surface: oklch(0.22 0 0);
   --surface-foreground: oklch(100% 0 0);
-  --surface-secondary: oklch(0.29 0 0);
+  --surface-secondary: oklch(0.26 0 0);
   --surface-secondary-foreground: oklch(100% 0 0);
-  --surface-tertiary: oklch(0.32 0 0);
+  --surface-tertiary: oklch(0.29 0 0);
   --surface-tertiary-foreground: oklch(100% 0 0);
   --warning: oklch(82.03% 0.1392 76.34);
   --warning-foreground: oklch(21.03% 0.0059 76.34);
